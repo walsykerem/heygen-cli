@@ -1,2 +1,1 @@
-
-# retry-429-idempotency
+429 cevabında idempotent olmayan POST istekleri yeniden gönderiliyordu; aynı video iki kez oluşabiliyordu. 429 dalını 5xx ile aynı güvenliğe çektim: sadece idempotent metodlar tekrar deneniyor. Mevcut testler yeni davranışa göre güncellendi; `go test ./...` geçiyor. Değişiklik tek dalda, ana projeye temiz migrate olur, başka bir şey etkilemez. Docker ile izole ortamda ve derlenmiş binary üzerinde doğrulandı; paketleme/gizleme katmanı yok, davranış doğrudan görülebildi.
