@@ -1,2 +1,1 @@
-
-# response-size-limit
+API yanıtları limitsiz okunuyordu; 700 MB yanıt ~1.8 GB RSS'e yol açıyordu. `io.LimitReader` ile 1 MiB üst sınır ve yeni `cli_response_too_large` hatası ekledim. Testte 700 MB yanıt 8 MB RSS ile reddedildi; `go build ./...` ve `go test ./...` geçiyor. Ana projeye temiz migrate olur, diğer yolları etkilemez. Docker ile izole ortamda doğrulandı; derlenmiş artifact'ta ek gizleme/paketleme katmanı yok, davranış doğrudan görülebiliyor.
