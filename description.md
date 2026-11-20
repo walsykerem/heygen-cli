@@ -1,2 +1,1 @@
-
-# auth-http-guard
+`auth login` skipAuth yolunda HTTP plaintext kontrolü atlanıyordu; API key düz metin gidiyordu. Kontrolü erken dönüşün önüne aldım. Test: yamalı binary isteği engelliyor (exit=2, sızdırma yok), yamasız anahtarı HTTP üzerinden gönderiyor. `go test ./...` geçiyor. Ana projeye temiz migrate olur, başka komutu etkilemez. Docker ile izole ortamda ve derlenmiş binary üzerinde doğrulandı; paketleme/gizleme katmanı yok, guard string'i binary içinde görülebiliyor.
